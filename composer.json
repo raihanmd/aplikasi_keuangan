@@ -1,0 +1,7 @@
+{
+"name": "aplikasi/keuangan",
+"description": ".",
+"require": {
+"phpoffice/phpspreadsheet": "^1.29"
+}
+}
