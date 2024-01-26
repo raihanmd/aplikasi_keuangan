@@ -79,7 +79,7 @@
                       <td><?php echo $d['kategori']; ?></td>
                       <td>    
                         <?php 
-                        if($d['kategori_id'] != 1){
+                        if($d['kategori_status'] == 'EDITABLE'){
                           ?> 
                           <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_kategori_<?php echo $d['kategori_id'] ?>">
                             <i class="fa fa-cog"></i>

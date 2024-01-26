@@ -14,11 +14,13 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class=" bg-primary">
-<h1 align="center">&nbsp;</h1>
-<h1 align="center">&nbsp;</h1>
-<h1 align="center"><strong>Aplikasi Keuangan </strong></h1>
-<h3 align="center">TAMAN KANAK-KANAK TADIKA MESRA </h3>
+<body class="bg-primary overflow-hidden">
+<h3 align="center">&nbsp;</h3>
+<h1 align="center">Pakarangan Apps </h1>
+<h3 align="center">&nbsp;</h3>
+<div style="display: flex; justify-content: center; align-items: center;">
+  <img src="./gambar/user/logo.png" width="150px" height="150px" alt="gambar" >
+</div>
 <div class="container">
     <div class="login-box">
 
@@ -67,7 +69,7 @@
 
     
       <center>
-        <h5><span style="color: white;">copyright 2022 @ TK TADIKA MESRA  </span></h5>
+        <h5><span style="color: white;">copyright 2022 @ Pakarangan Apps  </span></h5>
       </center>
     </p>
 

@@ -3,7 +3,7 @@
     <div class="pull-right hidden-xs">
       
     </div>
-    <strong>Copyright &copy; 2022</strong> - Sistem Informasi Keuangan TK Tadka Mesra
+    <strong>Copyright &copy; 2022</strong> - Pakarangan Apps
 
   
 </div>
@@ -209,7 +209,6 @@
     ]
 
   }
-
 
 
   window.onload = function(){

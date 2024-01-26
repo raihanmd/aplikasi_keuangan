@@ -15,12 +15,12 @@
 
   <section class="content">
     <div class="row">
-      <section class="col-lg-6 col-lg-offset-3">       
+      <section class="col-lg-6 col-lg-offset-3">
         <div class="box box-info">
 
           <div class="box-header">
             <h3 class="box-title">Tambah Pengguna</h3>
-            <a href="user.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-reply"></i> &nbsp Kembali</a> 
+            <a href="user.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-reply"></i> &nbsp Kembali</a>
           </div>
           <div class="box-body">
             <form action="user_act.php" method="post" enctype="multipart/form-data">
@@ -36,12 +36,13 @@
                 <label>Password</label>
                 <input type="password" class="form-control" name="password" required="required" min="5" placeholder="Masukkan Password ..">
               </div>
-               <div class="form-group">
+              <div class="form-group">
                 <label>Level</label>
                 <select class="form-control" name="level" required="required">
                   <option value=""> - Pilih Level - </option>
                   <option value="administrator"> Administrator </option>
-                  <option value="manajemen"> Manajemen </option>
+                  <option value="keuangan"> Keuangan </option>
+                  <option value="nasabah"> Nasabah </option>
                 </select>
               </div>
               <div class="form-group">
