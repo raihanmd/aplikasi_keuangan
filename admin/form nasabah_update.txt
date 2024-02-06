@@ -1,0 +1,177 @@
+<form action="nasabah_update.php" method="post">
+                          <div class="modal fade" id="edit_nasabah_<?php echo $d['user_id']
+                                                                    ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Edit Nasabah</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+
+                                  <input type="text" hidden name="user_id" value="<?php echo $d['user_id']; ?>">
+                                  <div class="form-group">
+                                    <label>Nama</label>
+                                    <input type="text" name="nama" value="<?php echo $d['user_nama']; ?>" required="required" class="form-control" placeholder="Nama ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Username</label>
+                                    <input type="text" name="username" value="<?php echo $d['user_username']; ?>" required="required" class="form-control" placeholder="Username ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" name="password" class="form-control" placeholder="Password ..">
+                                    <small class="text-muted">Isi hanya jika ingin mengganti password.</small>
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Nama Bank</label>
+                                    <input type="text" name="nama_bank" value="<?php echo $d['nama_bank']; ?>" required="required" class="form-control" placeholder="Nama Bank ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>No Rekening</label>
+                                    <input type="text" name="no" value="<?php echo $d['no']; ?>" required="required" class="form-control" placeholder="No Rekening ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Atas Nama Rekening</label>
+                                    <input type="text" name="atas_nama" value="<?php echo $d['atas_nama']; ?>" required="required" class="form-control" placeholder="Atas Nama Rekening ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>KCS / KCSP</label>
+                                    <input type="text" name="kcs" value="<?php echo $d['kcs']; ?>" required="required" class="form-control" placeholder="KCS / KCSP ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Kavling</label>
+                                    <input type="text" name="kavling" value="<?php echo $d['kavling']; ?>" required="required" class="form-control" placeholder="Kavling ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Branch Manager</label>
+                                    <input type="text" name="branch_manager" value="<?php echo $d['branch_manager']; ?>" required="required" class="form-control" placeholder="Branch Manager ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Nama Pengembang</label>
+                                    <input type="text" name="nama_pengembang" value="<?php echo $d['nama_pengembang']; ?>" required="required" class="form-control" placeholder="Nama Pengembang ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Nama Perumahan</label>
+                                    <input type="text" name="nama_perumahan" value="<?php echo $d['nama_perumahan']; ?>" required="required" class="form-control" placeholder="Nama Perumahan ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Luas</label>
+                                    <input type="text" name="luas" value="<?php echo $d['luas']; ?>" required="required" class="form-control" placeholder="Luas ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Alamat Perumahan</label>
+                                    <input type="text" name="alamat_perumahan" value="<?php echo $d['alamat_perumahan']; ?>" required="required" class="form-control" placeholder="Alamat Perumahan ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Tempat Lahir</label>
+                                    <input type="text" name="tempat_lahir" value="<?php echo $d['tempat_lahir']; ?>" required="required" class="form-control" placeholder="Tempat Lahir ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Tanggal Lahir</label>
+                                    <input autocomplete="off" type="text" name="tanggal_lahir" value="<?php echo $d['tanggal_lahir']; ?>" required="required" class="form-control datepicker2" placeholder="Tanggal Lahir">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Pekerjaan</label>
+                                    <input type="text" name="pekerjaan" value="<?php echo $d['pekerjaan']; ?>" required="required" class="form-control" placeholder="Pekerjaan ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Jabatan</label>
+                                    <input type="text" name="jabatan" value="<?php echo $d['jabatan']; ?>" required="required" class="form-control" placeholder="Jabatan ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>NIK</label>
+                                    <input type="text" name="nik" value="<?php echo $d['nik']; ?>" required="required" class="form-control" placeholder="NIK ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Alamat</label>
+                                    <input type="text" name="alamat" value="<?php echo $d['alamat']; ?>" required="required" class="form-control" placeholder="Alamat ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>No HP</label>
+                                    <input type="text" name="no_hp" value="<?php echo $d['no_hp']; ?>" required="required" class="form-control" placeholder="No HP ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Nama Pasangan (Opsional)</label>
+                                    <input type="text" name="nama_pasangan" value="<?php echo $d['nama_pasangan']; ?>" class="form-control" placeholder="Nama Pasangan ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Tempat Lahir Pasangan (Opsional)</label>
+                                    <input type="text" name="tempat_lahir_pasangan" value="<?php echo $d['tempat_lahir_pasangan']; ?>" class="form-control" placeholder="Tempat Lahir Pasangan ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Tanggal Lahir Pasangan (Optinal)</label>
+                                    <input autocomplete="off" type="text" name="tanggal_lahir_pasangan" value="<?php echo $d['tanggal_lahir_pasangan']; ?>" class="form-control datepicker2" placeholder="Tanggal Lahir Pasangan">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Pekerjaan Pasangan (Opsional)</label>
+                                    <input type="text" name="pekerjaan_pasangan" value="<?php echo $d['pekerjaan_pasangan']; ?>" class="form-control" placeholder="Pekerjaan Pasangan ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>NIK Pasangan (Opsional)</label>
+                                    <input type="text" name="nik_pasangan" value="<?php echo $d['nik_pasangan']; ?>" class="form-control" placeholder="NIK Pasangan ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Alamat Pasangan (Opsional)</label>
+                                    <input type="text" name="alamat_pasangan" value="<?php echo $d['alamat_pasangan']; ?>" class="form-control" placeholder="Alamat Pasangan ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>No HP Pasangan (Opsional)</label>
+                                    <input type="text" name="no_hp_pasangan" value="<?php echo $d['no_hp_pasangan']; ?>" class="form-control" placeholder="No HP Pasangan ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Nama Instansi</label>
+                                    <input type="text" name="nama_instansi" value="<?php echo $d['nama_instansi']; ?>" required="required" class="form-control" placeholder="Nama Instansi ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Alamat Instansi</label>
+                                    <input type="text" name="alamat_instansi" value="<?php echo $d['alamat_instansi']; ?>" required="required" class="form-control" placeholder="Alamat Instansi ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>No HP Instansi (Opsional)</label>
+                                    <input type="text" name="no_hp_instansi" value="<?php echo $d['no_hp_instansi']; ?>" class="form-control" placeholder="No HP Instansi ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Gaji Pokok</label>
+                                    <input type="text" name="gaji_pokok" value="<?php echo $d['gaji_pokok']; ?>" required="required" class="form-control" placeholder="Gaji Pokok ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Gaji Keseluruhan</label>
+                                    <input type="text" name="gaji_keseluruhan" value="<?php echo $d['gaji_keseluruhan']; ?>" required="required" class="form-control" placeholder="Gaji Pokok ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>No NPWP (Opsional)</label>
+                                    <input type="text" name="no_npwp" value="<?php echo $d['no_npwp']; ?>" class="form-control" placeholder="No NPWP ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Tanggal Pembuatan NPWP (Opsional)</label>
+                                    <input type="text" name="tanggal_pembuatan_npwp" value="<?php echo $d['tanggal_pembuatan_npwp']; ?>" class="form-control datepicker2" placeholder="Tanggal Pembuatan NPWP">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Marketing (Opsional)</label>
+                                    <input type="text" name="marketing" value="<?php echo $d['marketing']; ?>" class="form-control" placeholder="Marketing ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>No HP Marketing (Opsional)</label>
+                                    <input type="text" name="no_hp_marketing" value="<?php echo $d['no_hp_marketing']; ?>" class="form-control" placeholder="No HP Marketing ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Petugas Input / Disetuji PT (Opsional)</label>
+                                    <input type="text" name="petugas_input" value="<?php echo $d['petugas_input']; ?>" class="form-control" placeholder="Petugas Input / Disetuji PT ..">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Catatan Khusus (Opsional)</label>
+                                    <input type="text" name="catatan_khusus" value="<?php echo $d['catatan_khusus']; ?>" class="form-control" placeholder="Catatan Khusus ..">
+                                  </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                  <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>

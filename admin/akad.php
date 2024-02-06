@@ -63,6 +63,10 @@
                         </select>
                       </div>
                       <div class="form-group">
+                        <label>Keterangan</label>
+                        <input type="text" name="keterangan" class="form-control" placeholder="Keterangan ..">
+                      </div>
+                      <div class="form-group">
                         <label>Status DP</label>
                         <select class="form-control" name="status_dp" required="required">
                           <option value=""> - Pilih Status DP - </option>
@@ -88,8 +92,10 @@
                   <tr>
                     <th width="1%">NO</th>
                     <th>NAMA</th>
-                    <th width="40%">NO RUMAH</th>
-                    <th width="20%">STATUS DP</th>
+                    <th width="15%">KAVLING / NO RUMAH</th>
+                    <th width="20%">KETERANGAN</th>
+                    <th width="20%">SALDO</th>
+                    <th width="10%">STATUS DP</th>
                     <th width="10%">OPSI</th>
                   </tr>
                 </thead>
@@ -99,11 +105,9 @@
                   $no = 1;
                   $data = mysqli_query(
                     $koneksi,
-                    "SELECT u.user_id, u.user_nama, n.no_rumah, a.status_dp 
-                    FROM user AS u
-                    LEFT JOIN nasabah AS n ON u.user_id = n.user_id
-                    LEFT JOIN akad AS a ON u.user_id = a.user_id
-                    WHERE u.user_level = 'nasabah' AND a.user_id IS NOT NULL
+                    "SELECT user_nama, n.kavling, a.keterangan, n.saldo, a.status_dp, u.user_id FROM user as u
+                    JOIN akad as a ON a.user_id = u.user_id 
+                    JOIN nasabah as n ON n.user_id = u.user_id 
                     ORDER BY u.user_id ASC"
                   );
 
@@ -112,7 +116,9 @@
                     <tr>
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $d['user_nama']; ?></td>
-                      <td><?php echo $d['no_rumah'] ? $d['no_rumah'] : '-'; ?></td>
+                      <td><?php echo $d['kavling'] ?></td>
+                      <td><?php echo $d['keterangan'] ? $d['keterangan'] : '-' ?></td>
+                      <td><?php echo "Rp. " . number_format($d['saldo']) . " ,-"  ?></td>
                       <td><?php echo $d['status_dp']; ?></td>
                       <td>
                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_kategori_<?php echo $d['user_id'] ?>">
@@ -143,7 +149,10 @@
                                     </select>
                                   </div>
 
-
+                                  <div class="form-group">
+                                    <label>Keterangan</label>
+                                    <input type="text" name="keterangan" class="form-control" placeholder="Keterangan .." value="<?php echo $d['keterangan'] ?>">
+                                  </div>
 
                                   <div class="form-group">
                                     <label>Status DP</label>

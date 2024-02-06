@@ -123,9 +123,30 @@
             </a>
           </li>
 
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-money"></i>
+              <span>TRANSAKSI</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu" style="display: none;">
+              <li><a href="transaksi_umum.php"><i class="fa fa-circle-o"></i> Umum</a></li>
+              <li><a href="transaksi_akad.php"><i class="fa fa-circle-o"></i> Akad</a></li>
+              <li><a href="transaksi_pt.php"><i class="fa fa-circle-o"></i> PT</a></li>
+            </ul>
+          </li>
+
           <li>
-            <a href="transaksi.php">
-              <i class="fa fa-folder"></i> <span>DATA TRANSAKSI</span>
+            <a href="nasabah.php">
+              <i class="fa fa-university"></i> <span>DATA NASABAH</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="pt.php">
+              <i class="fa fa-university"></i> <span>DATA PT</span>
             </a>
           </li>
 
@@ -136,19 +157,8 @@
           </li>
 
           <li>
-            <a href="nasabah.php">
-              <i class="fa fa-university"></i> <span>DATA NASABAH</span>
-            </a>
-          </li>
-          <li>
-            <a href="pt.php">
-              <i class="fa fa-university"></i> <span>DATA PT</span>
-            </a>
-          </li>
-
-          <li>
             <a href="hutang_piutang.php">
-              <i class="fa fa-hand-paper-o"></i> <span>HUTANG PIUTANG</span>
+              <i class="fa fa-hand-paper-o"></i> <span>WILL DELETED HUTANG PIUTANG</span>
             </a>
           </li>
 

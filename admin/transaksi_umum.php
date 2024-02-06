@@ -4,8 +4,8 @@
 
   <section class="content-header">
     <h1>
-      Transaksi
-      <small>Data Transaksi</small>
+      Transaksi Umum
+      <small>Data Transaksi Umum</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -22,16 +22,12 @@
             <h3 class="box-title" style="margin-bottom: 2rem;">Transaksi Pemasukan & Pengeluaran</h3>
             <br />
             <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#transaksi_modal">
-              <i class="fa fa-plus"></i> &nbsp Tambah Transaksi Masuk
-            </button>
-            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#hutang_piutang_modal">
-              <i class="fa fa-plus"></i> &nbsp Tambah Hutang Piutang
-            </button>
-            <button type="button" class="btn bg-red btn-sm" data-toggle="modal" data-target="#pinjaman_modal">
-              <i class="fa fa-plus"></i> &nbsp Tambah Pinjaman PT
+              <i class="fa fa-plus"></i> &nbsp Tambah Transaksi
             </button>
             <?php if (isset($_GET['query'])) : ?>
-              <a href="transaksi.php">
+              <br />
+              <br />
+              <a href="transaksi_umum.php">
                 <button type="button" class="btn btn-sm btn-success">KEMBALI</button>
               </a>
             <?php endif; ?>
@@ -77,136 +73,12 @@
 
 
             <!-- Transaksi Modal -->
-            <form action="transaksi_act.php" method="post" enctype="multipart/form-data">
+            <form action="transaksi_umum_act.php" method="post" enctype="multipart/form-data">
               <div class="modal fade" id="transaksi_modal" tabindex="-1" role="dialog" aria-labelledby="transaksi_modalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h4 class="modal-title" id="transaksi_modalLabel">Tambah Transaksi</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-
-                      <div class="form-group">
-                        <label>Tanggal</label>
-                        <input type="text" name="tanggal" required="required" class="form-control datepicker2">
-                      </div>
-
-                      <div class="form-group">
-                        <label>Jenis</label>
-                        <select name="jenis" class="form-control" required="required">
-                          <option value="">- Pilih -</option>
-                          <option value="Pemasukan">Pemasukan</option>
-                          <option value="Pengeluaran">Pengeluaran</option>
-                        </select>
-                      </div>
-
-                      <div class="form-group">
-                        <label>Kategori</label>
-                        <select name="kategori" class="form-control" required="required">
-                          <option value="">- Pilih -</option>
-                          <?php
-                          $kategori = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY kategori ASC");
-                          while ($k = mysqli_fetch_array($kategori)) {
-                          ?>
-                            <option value="<?php echo $k['kategori_id']; ?>"><?php echo $k['kategori']; ?></option>
-                          <?php
-                          }
-                          ?>
-                        </select>
-                      </div>
-
-                      <div class="form-group">
-                        <label>Nominal</label>
-                        <input type="number" name="nominal" required="required" class="form-control" placeholder="Masukkan Nominal ..">
-                      </div>
-
-                      <div class="form-group">
-                        <label>Keterangan</label>
-                        <textarea name="keterangan" class="form-control" rows="3" required></textarea>
-                      </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                      <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <!-- Hutang Piutang Modal -->
-            <form action="transaksi_act.php" method="post" enctype="multipart/form-data">
-              <div class="modal fade" id="hutang_piutang_modal" tabindex="-1" role="dialog" aria-labelledby="hutang_piutang_modalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 class="modal-title" id="hutang_piutang_modalLabel">Tambah Hutang Piutang</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-
-                      <div class="form-group">
-                        <label>Tanggal</label>
-                        <input type="text" name="tanggal" required="required" class="form-control datepicker2">
-                      </div>
-
-                      <div class="form-group">
-                        <label>Jenis</label>
-                        <select name="jenis" class="form-control" required="required">
-                          <option value="">- Pilih -</option>
-                          <option value="Pemasukan">Pemasukan</option>
-                          <option value="Pengeluaran">Pengeluaran</option>
-                        </select>
-                      </div>
-
-                      <div class="form-group">
-                        <label>Kategori</label>
-                        <select name="kategori" class="form-control" required="required">
-                          <option value="">- Pilih -</option>
-                          <?php
-                          $kategori = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY kategori ASC");
-                          while ($k = mysqli_fetch_array($kategori)) {
-                          ?>
-                            <option value="<?php echo $k['kategori_id']; ?>"><?php echo $k['kategori']; ?></option>
-                          <?php
-                          }
-                          ?>
-                        </select>
-                      </div>
-
-                      <div class="form-group">
-                        <label>Nominal</label>
-                        <input type="number" name="nominal" required="required" class="form-control" placeholder="Masukkan Nominal ..">
-                      </div>
-
-                      <div class="form-group">
-                        <label>Keterangan</label>
-                        <textarea name="keterangan" class="form-control" rows="3" required></textarea>
-                      </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                      <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <!-- Pinjaman Modal -->
-            <form action="transaksi_act.php" method="post" enctype="multipart/form-data">
-              <div class="modal fade" id="pinjaman_modal" tabindex="-1" role="dialog" aria-labelledby="pinjaman_modalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 class="modal-title" id="pinjaman_modalLabel">Tambah Pinjaman PT</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -288,16 +160,10 @@
                   // Proses pencarian
                   if (isset($_GET['query']) && !empty($_GET['query'])) {
                     $query = $_GET['query'];
-                    $data = mysqli_query($koneksi, "SELECT * FROM transaksi 
-                                                     JOIN kategori ON kategori_id=transaksi_kategori 
-                                                     WHERE transaksi_keterangan LIKE '%$query%' OR kategori LIKE '%$query%' 
-                                                     ORDER BY transaksi_id DESC");
+                    $data = mysqli_query($koneksi, "SELECT * FROM transaksi_umum, kategori WHERE kategori_id=transaksi_kategori AND (transaksi_keterangan LIKE '%$query%' OR kategori LIKE '%$query%') ORDER BY transaksi_id DESC");
                   } else {
-                    $data = mysqli_query($koneksi, "SELECT * FROM transaksi 
-                                                     JOIN kategori ON kategori_id=transaksi_kategori 
-                                                     ORDER BY transaksi_id DESC");
+                    $data = mysqli_query($koneksi, "SELECT * FROM transaksi_umum, kategori WHERE kategori_id=transaksi_kategori ORDER BY transaksi_id DESC");
                   }
-                  print("<pre>" . print_r(mysqli_fetch_array($data), true) . "</pre>");
                   while ($d = mysqli_fetch_array($data)) {
                   ?>
                     <tr>
@@ -332,17 +198,13 @@
                           <i class="fa fa-trash"></i>
                         </button>
 
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#lihat_transaksi_<?php echo $d['transaksi_id'] ?>">
-                          <i class="fa fa-eye"></i>
-                        </button>
+                        <a href="transaksi_umum_xlsx.php?query=<?= $d['transaksi_keterangan'] ?>&jenis=satuan" target="_blank" class="btn btn-sm btn-success"><i class="fa fa-file-excel-o"></i></a>
 
-                        <a href="transaksi_xlsx.php?query=<?= $d['transaksi_keterangan'] ?>&jenis=satuan" target="_blank" class="btn btn-sm btn-success"><i class="fa fa-file-excel-o"></i></a>
-
-                        <a href="transaksi_print.php?query=<?= $d['transaksi_keterangan'] ?>" target="_blank" class="btn btn-sm btn-info"><i class="fa fa-print"></i></a>
+                        <a href="transaksi_umum_print.php?query=<?= $d['transaksi_keterangan'] ?>" target="_blank" class="btn btn-sm btn-info"><i class="fa fa-print"></i></a>
 
 
 
-                        <form action="transaksi_update.php" method="post" enctype="multipart/form-data">
+                        <form action="transaksi_umum_update.php" method="post" enctype="multipart/form-data">
                           <div class="modal fade" id="edit_transaksi_<?php echo $d['transaksi_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
@@ -400,29 +262,6 @@
                                     <textarea required name="keterangan" style="width:100%" class="form-control" rows="4"><?php echo $d['transaksi_keterangan'] ?></textarea>
                                   </div>
 
-                                  <div class="form-group" style="width:100%;margin-bottom:20px">
-                                    <label>Upload File</label>
-                                    <input type="file" name="trnfoto" class="form-control"><br>
-                                    <!-- <small><?php echo $d['transaksi_foto'] ?></small> -->
-                                    <p class="help-block">Bila File <?php echo "<a class='fancybox btn btn-xs btn-primary' target=_blank href='../gambar/bukti/$d[transaksi_foto]'>$d[transaksi_foto]</a>"; ?> tidak dirubah kosongkan saja</p>
-                                  </div>
-
-                                  <div class="form-group" style="width:100%;margin-bottom:20px">
-                                    <label>Rekening Bank</label>
-                                    <select name="bank" class="form-control" required="required" style="width:100%">
-                                      <option value="">- Pilih -</option>
-                                      <?php
-                                      $bank = mysqli_query($koneksi, "SELECT * FROM bank");
-                                      while ($b = mysqli_fetch_array($bank)) {
-                                      ?>
-                                        <option <?php if ($d['transaksi_bank'] == $b['bank_id']) {
-                                                  echo "selected='selected'";
-                                                } ?> value="<?php echo $b['bank_id']; ?>"><?php echo $b['bank_nama']; ?></option>
-                                      <?php
-                                      }
-                                      ?>
-                                    </select>
-                                  </div>
 
 
                                 </div>
@@ -471,7 +310,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                <a href="transaksi_hapus.php?id=<?php echo $d['transaksi_id'] ?>" class="btn btn-primary">Hapus</a>
+                                <a href="transaksi_umum_hapus.php?id=<?php echo $d['transaksi_id'] ?>" class="btn btn-primary">Hapus</a>
                               </div>
                             </div>
                           </div>

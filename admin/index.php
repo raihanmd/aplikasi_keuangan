@@ -25,7 +25,7 @@
             <span class="info-box-text">Pemasukan Hari ini</span>
             <?php
             $tanggal = date('Y-m-d');
-            $pemasukan = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi WHERE transaksi_jenis='Pemasukan' and transaksi_tanggal='$tanggal'");
+            $pemasukan = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi_umum WHERE transaksi_jenis='Pemasukan' and transaksi_tanggal='$tanggal'");
             $p = mysqli_fetch_assoc($pemasukan);
             ?>
             <span class="info-box-number"><?php echo "Rp. " . number_format($p['total_pemasukan']) . " ,-" ?></span>
@@ -41,7 +41,7 @@
             <span class="info-box-text">Pemasukan Bulan Ini</span>
             <?php
             $bulan = date('m');
-            $pemasukan = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi WHERE transaksi_jenis='Pemasukan' and month(transaksi_tanggal)='$bulan'");
+            $pemasukan = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi_umum WHERE transaksi_jenis='Pemasukan' and month(transaksi_tanggal)='$bulan'");
             $p = mysqli_fetch_assoc($pemasukan);
             ?>
             <span class="info-box-number"><?php echo "Rp. " . number_format($p['total_pemasukan']) . " ,-" ?></span>
@@ -72,7 +72,7 @@
             <span class="info-box-text">Pengeluaran Hari Ini</span>
             <?php
             $tanggal = date('Y-m-d');
-            $pengeluaran = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pengeluaran FROM transaksi WHERE transaksi_jenis='pengeluaran' and transaksi_tanggal='$tanggal'");
+            $pengeluaran = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pengeluaran FROM transaksi_umum WHERE transaksi_jenis='pengeluaran' and transaksi_tanggal='$tanggal'");
             $p = mysqli_fetch_assoc($pengeluaran);
             ?>
             <span class="info-box-number"><?php echo "Rp. " . number_format($p['total_pengeluaran']) . " ,-" ?></span>
@@ -88,7 +88,7 @@
             <span class="info-box-text">Pengeluaran Bulan Ini</span>
             <?php
             $bulan = date('m');
-            $pengeluaran = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pengeluaran FROM transaksi WHERE transaksi_jenis='pengeluaran' and month(transaksi_tanggal)='$bulan'");
+            $pengeluaran = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pengeluaran FROM transaksi_umum WHERE transaksi_jenis='pengeluaran' and month(transaksi_tanggal)='$bulan'");
             $p = mysqli_fetch_assoc($pengeluaran);
             ?>
             <span class="info-box-number"><?php echo "Rp. " . number_format($p['total_pengeluaran']) . " ,-" ?></span>
@@ -158,9 +158,6 @@
               <h4 class="text-center">Grafik Data Pemasukan & Pengeluaran Per <b>Tahun</b></h4>
               <canvas id="grafik2" style="position: relative; height: 300px;"></canvas>
 
-
-              <h4 class="text-center">Grafik Data Pemasukan & Pengeluaran Per <b>Bulan</b></h4>
-              <canvas id="grafik1" style="position: relative; height: 300px;"></canvas>
             </div>
           </div>
 

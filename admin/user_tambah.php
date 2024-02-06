@@ -42,7 +42,6 @@
                   <option value=""> - Pilih Level - </option>
                   <option value="administrator"> Administrator </option>
                   <option value="keuangan"> Keuangan </option>
-                  <option value="nasabah"> Nasabah </option>
                 </select>
               </div>
               <div class="form-group">

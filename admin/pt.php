@@ -43,10 +43,6 @@
                     <div class="modal-body">
 
                       <div class="form-group">
-                        <label>Nomor Rumah</label>
-                        <input type="text" name="no_rumah" required="required" class="form-control" placeholder="Nomor Rumah ..">
-                      </div>
-                      <div class="form-group">
                         <label>Nama</label>
                         <input type="text" name="nama" required="required" class="form-control" placeholder="Nama ..">
                       </div>
@@ -55,16 +51,12 @@
                         <input type="text" name="alamat" required="required" class="form-control" placeholder="Alamat ..">
                       </div>
                       <div class="form-group">
-                        <label>NIK</label>
-                        <input type="text" name="nik" required="required" class="form-control" placeholder="Nik ..">
+                        <label>Dirut</label>
+                        <input type="text" name="dirut" required="required" class="form-control" placeholder="Dirut ..">
                       </div>
                       <div class="form-group">
-                        <label>NO HP</label>
-                        <input type="text" name="no_hp" required="required" class="form-control" placeholder="No Hp ..">
-                      </div>
-                      <div class="form-group">
-                        <label>NO HP 2 (OPSIONAL)</label>
-                        <input type="text" name="no_hp_2" class="form-control" placeholder="No Hp ..">
+                        <label>Saldo</label>
+                        <input type="number" name="saldo" required="required" class="form-control" placeholder="Saldo ..">
                       </div>
 
                     </div>
@@ -83,42 +75,42 @@
                 <thead>
                   <tr>
                     <th width="1%">NO</th>
-                    <th width="10%">NO RUMAH</th>
                     <th>NAMA</th>
-                    <th width="20%">ALAMAT RUMAH</th>
-                    <th width="15%">NIK</th>
-                    <th width="10%">NO HP</th>
-                    <th width="10%">NO HP 2</th>
-                    <th width="6%">OPSI</th>
+                    <th width="40%">ALAMAT</th>
+                    <th width="20%">DIRUT</th>
+                    <th width="15%">SALDO</th>
+                    <th width="10%">OPSI</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
                   include '../koneksi.php';
                   $no = 1;
-                  $data = mysqli_query($koneksi, "SELECT * FROM pt ORDER BY id ASC");
+                  $data = mysqli_query(
+                    $koneksi,
+                    "SELECT id, nama_pt, alamat_pt, dirut_pt, saldo FROM pt"
+                  );
+
                   while ($d = mysqli_fetch_array($data)) {
                   ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
-                      <td><?php echo $d['no_rumah']; ?></td>
-                      <td><?php echo $d['nama']; ?></td>
-                      <td><?php echo $d['alamat']; ?></td>
-                      <td><?php echo $d['nik']; ?></td>
-                      <td><?php echo $d['no_hp']; ?></td>
-                      <td><?php echo $d['no_hp_2'] ? $d['no_hp_2'] : "<p style='color: gray'>Tidak mengisi</p>" ?></td>
+                      <td><?php echo $d['nama_pt']; ?></td>
+                      <td><?php echo $d['alamat_pt']; ?></td>
+                      <td><?php echo $d['dirut_pt']; ?></td>
+                      <td><?php echo "Rp. " . number_format($d['saldo']) . " ,-" ?></td>
                       <td>
-                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_PT_<?php echo $d['id'] ?>">
+                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_kategori_<?php echo $d['id'] ?>">
                           <i class="fa fa-cog"></i>
                         </button>
 
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus_PT_<?php echo $d['id'] ?>">
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus_kategori_<?php echo $d['id'] ?>">
                           <i class="fa fa-trash"></i>
                         </button>
 
 
                         <form action="pt_update.php" method="post">
-                          <div class="modal fade" id="edit_PT_<?php echo $d['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal fade" id="edit_kategori_<?php echo $d['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -129,36 +121,22 @@
                                 </div>
                                 <div class="modal-body">
 
-
-                                  <div class="form-group">
-                                    <label>Nomor Rumah</label>
-                                    <input type="hidden" name="id" required="required" class="form-control" placeholder="Nama Kategori .." value="<?php echo $d['id']; ?>">
-                                    <input type="text" value="<?php echo $d['no_rumah'] ?>" name="no_rumah" required="required" class="form-control" placeholder="Nomor Rumah ..">
-                                  </div>
-
+                                  <input type="text" hidden value="<?php echo $d['id'] ?>" name="nama" required="required" class="form-control" placeholder="Nama ..">
                                   <div class="form-group">
                                     <label>Nama</label>
                                     <input type="text" value="<?php echo $d['nama'] ?>" name="nama" required="required" class="form-control" placeholder="Nama ..">
                                   </div>
-
                                   <div class="form-group">
                                     <label>Alamat</label>
                                     <input type="text" value="<?php echo $d['alamat'] ?>" name="alamat" required="required" class="form-control" placeholder="Alamat ..">
                                   </div>
-
                                   <div class="form-group">
-                                    <label>NIK</label>
-                                    <input type="text" value="<?php echo $d['nik'] ?>" name="nik" required="required" class="form-control" placeholder="Nik ..">
+                                    <label>Dirut</label>
+                                    <input type="text" value="<?php echo $d['dirut'] ?>" name="dirut" required="required" class="form-control" placeholder="Dirut ..">
                                   </div>
-
                                   <div class="form-group">
-                                    <label>NO HP</label>
-                                    <input type="text" value="<?php echo $d['no_hp'] ?>" name="no_hp" required="required" class="form-control" placeholder="No Hp ..">
-                                  </div>
-
-                                  <div class="form-group">
-                                    <label>NO HP 2 (OPSIONAL)</label>
-                                    <input type="text" value="<?php echo $d['no_hp_2'] ?>" name="no_hp_2" class="form-control" placeholder="No Hp ..">
+                                    <label>Saldo</label>
+                                    <input type="number" value="<?php echo $d['saldo'] ?>" name="saldo" required="required" class="form-control" placeholder="Saldo ..">
                                   </div>
 
                                 </div>
@@ -172,7 +150,7 @@
                         </form>
 
                         <!-- modal hapus -->
-                        <div class="modal fade" id="hapus_PT_<?php echo $d['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="hapus_kategori_<?php echo $d['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
