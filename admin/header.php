@@ -156,11 +156,11 @@
             </a>
           </li>
 
-          <li>
+          <!-- <li>
             <a href="hutang_piutang.php">
               <i class="fa fa-hand-paper-o"></i> <span>WILL DELETED HUTANG PIUTANG</span>
             </a>
-          </li>
+          </li> -->
 
           <!-- <li class="treeview">
             <a href="#">

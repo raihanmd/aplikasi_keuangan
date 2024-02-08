@@ -244,12 +244,13 @@
                   <?php
                   include '../koneksi.php';
                   $no = 1;
-                  $data = mysqli_query(
-                    $koneksi,
-                    "SELECT u.user_id, u.user_nama, kavling, alamat, no_hp, saldo FROM nasabah as n
-                    JOIN user as u ON u.user_id = n.user_id"
-                  );
+                  $data = mysqli_query($koneksi, "SELECT u.user_id, u.user_nama, n.kavling, n.alamat, n.no_hp, 
+                          (SELECT SUM(nominal) FROM transaksi_akad WHERE nasabah_id = n.id AND jenis = 'Pemasukan') as pemasukan,
+                          (SELECT SUM(nominal) FROM transaksi_akad WHERE nasabah_id = n.id AND jenis = 'Pengeluaran') as pengeluaran
+                          FROM nasabah as n
+                          JOIN user as u ON u.user_id = n.user_id");
                   while ($d = mysqli_fetch_array($data)) {
+                    $saldo = $d['pemasukan'] - $d['pengeluaran'];
                   ?>
                     <tr>
                       <td><?php echo $no++;
@@ -262,7 +263,7 @@
                           ?></td>
                       <td><?php echo $d['no_hp'];
                           ?></td>
-                      <td><?php echo "Rp. " . number_format($d['saldo']) . " ,-";
+                      <td><?php echo "Rp. " . number_format($saldo) . " ,-";
                           ?></td>
                       <td>
                         <a href="nasabah_detail.php?user_id=<?= $d['user_id'] ?>" type="button" class="btn btn-warning btn-sm">

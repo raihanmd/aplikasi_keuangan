@@ -86,19 +86,19 @@
                   <?php
                   include '../koneksi.php';
                   $no = 1;
-                  $data = mysqli_query(
-                    $koneksi,
-                    "SELECT id, nama_pt, alamat_pt, dirut_pt, saldo FROM pt"
-                  );
-
+                  $data = mysqli_query($koneksi, "SELECT id, nama_pt, alamat_pt, dirut_pt,
+                          (SELECT SUM(nominal) FROM transaksi_pt WHERE pt_id = p.id AND jenis = 'Pemasukan') as pemasukan,
+                          (SELECT SUM(nominal) FROM transaksi_pt WHERE pt_id = p.id AND jenis = 'Pengeluaran') as pengeluaran
+                          FROM pt as p");
                   while ($d = mysqli_fetch_array($data)) {
+                    $saldo = $d['pemasukan'] - $d['pengeluaran'];
                   ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $d['nama_pt']; ?></td>
                       <td><?php echo $d['alamat_pt']; ?></td>
                       <td><?php echo $d['dirut_pt']; ?></td>
-                      <td><?php echo "Rp. " . number_format($d['saldo']) . " ,-" ?></td>
+                      <td><?php echo "Rp. " . number_format($saldo) . " ,-" ?></td>
                       <td>
                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_kategori_<?php echo $d['id'] ?>">
                           <i class="fa fa-cog"></i>

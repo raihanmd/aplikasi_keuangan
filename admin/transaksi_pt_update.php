@@ -4,26 +4,24 @@ include '../koneksi.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Ambil data dari form
     $id = $_POST['id'];
-    $nasabah_id = $_POST['nasabah_id'];
+    $pt_id = $_POST['pt_id'];
     $tanggal = $_POST['tanggal'];
-    $status = $_POST['status'];
+    $jenis = $_POST['jenis'];
     $nominal = $_POST['nominal'];
     $keterangan = $_POST['keterangan'];
-    $jenis = $_POST['jenis']; // Tambahkan jenis transaksi
 
     // Mulai transaction
     mysqli_autocommit($koneksi, false);
     $error = false;
 
     try {
-        // Update data transaksi_akad
-        $update_query = "UPDATE transaksi_akad SET
-            nasabah_id = '$nasabah_id',
+        // Update data transaksi_pt
+        $update_query = "UPDATE transaksi_pt SET
+            pt_id = '$pt_id',
             tanggal = '$tanggal',
-            status = '$status',
+            jenis = '$jenis',
             nominal = '$nominal',
-            keterangan = '$keterangan',
-            jenis = '$jenis'
+            keterangan = '$keterangan'
             WHERE id = $id";
 
         if (!mysqli_query($koneksi, $update_query)) {
@@ -33,14 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if ($error) {
-            // Redirect ke halaman transaksi_akad dengan alert gagal
-            header("location:transaksi_akad.php?alert=gagalupdate");
+            // Redirect ke halaman transaksi_pt dengan alert gagal
+            header("location:transaksi_pt.php?alert=gagalupdate");
             exit();
         } else {
             // Commit jika tidak ada error
             mysqli_commit($koneksi);
-            // Redirect ke halaman transaksi_akad dengan alert berhasil
-            header("location:transaksi_akad.php?alert=berhasilupdate");
+            // Redirect ke halaman transaksi_pt dengan alert berhasil
+            header("location:transaksi_pt.php?alert=berhasilupdate");
             exit();
         }
     } catch (Exception $e) {
@@ -49,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die($e->getMessage());
     }
 } else {
-    // Jika bukan POST request, redirect ke halaman transaksi_akad
-    header("location:transaksi_akad.php");
+    // Jika bukan POST request, redirect ke halaman transaksi_pt
+    header("location:transaksi_pt.php");
     exit();
 }
