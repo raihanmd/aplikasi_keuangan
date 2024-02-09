@@ -23,9 +23,9 @@ if ($cek > 0) {
 	} else if ($data['user_level'] == "keuangan") {
 		$_SESSION['status'] = "keuangan_logedin";
 		header("location:keuangan/");
-	} else if ($data['user_level'] == "nasabah") {
-		$_SESSION['status'] = "nasabah_logedin";
-		header("location:nasabah/");
+	} else if ($data['user_level'] == "pemberkasan") {
+		$_SESSION['status'] = "pemberkasan_logedin";
+		header("location:pemberkasan/");
 	} else {
 		header("location:index.php?alert=gagal");
 	}

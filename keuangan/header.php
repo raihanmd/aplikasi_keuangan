@@ -117,12 +117,6 @@
             </a>
           </li>
 
-          <li>
-            <a href="kategori.php">
-              <i class="fa fa-folder"></i> <span>DATA KATEGORI</span>
-            </a>
-          </li>
-
           <li class="treeview">
             <a href="#">
               <i class="fa fa-money"></i>
@@ -149,35 +143,6 @@
               <i class="fa fa-university"></i> <span>DATA PT</span>
             </a>
           </li>
-
-
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-users"></i>
-              <span>DATA PENGGUNA</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu" style="display: none;">
-              <li><a href="user.php"><i class="fa fa-circle-o"></i> Data Pengguna</a></li>
-              <li><a href="user_tambah.php"><i class="fa fa-circle-o"></i> Tambah Pengguna</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="laporan.php">
-              <i class="fa fa-file"></i> <span>LAPORAN</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="pemberkasan.php">
-              <i class="fa fa-file"></i> <span>PEMBERKASAN</span>
-            </a>
-          </li>
-
-
 
           <li>
             <a href="gantipassword.php">

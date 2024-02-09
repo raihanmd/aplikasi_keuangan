@@ -118,58 +118,11 @@
           </li>
 
           <li>
-            <a href="kategori.php">
-              <i class="fa fa-folder"></i> <span>DATA KATEGORI</span>
-            </a>
-          </li>
-
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-money"></i>
-              <span>TRANSAKSI</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu" style="display: none;">
-              <li><a href="transaksi_umum.php"><i class="fa fa-circle-o"></i> Umum</a></li>
-              <li><a href="transaksi_akad.php"><i class="fa fa-circle-o"></i> Akad</a></li>
-              <li><a href="transaksi_pt.php"><i class="fa fa-circle-o"></i> PT</a></li>
-            </ul>
-          </li>
-
-          <li>
             <a href="nasabah.php">
               <i class="fa fa-university"></i> <span>DATA NASABAH</span>
             </a>
           </li>
 
-          <li>
-            <a href="pt.php">
-              <i class="fa fa-university"></i> <span>DATA PT</span>
-            </a>
-          </li>
-
-
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-users"></i>
-              <span>DATA PENGGUNA</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu" style="display: none;">
-              <li><a href="user.php"><i class="fa fa-circle-o"></i> Data Pengguna</a></li>
-              <li><a href="user_tambah.php"><i class="fa fa-circle-o"></i> Tambah Pengguna</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="laporan.php">
-              <i class="fa fa-file"></i> <span>LAPORAN</span>
-            </a>
-          </li>
 
           <li>
             <a href="pemberkasan.php">
