@@ -15,13 +15,13 @@
 </head>
 
 <body class="bg-primary overflow-hidden">
-<h3 align="center">&nbsp;</h3>
-<h1 align="center">Pakarangan Apps </h1>
-<h3 align="center">&nbsp;</h3>
-<div style="display: flex; justify-content: center; align-items: center;">
-  <img src="./gambar/user/logo.png" width="150px" height="150px" alt="gambar" >
-</div>
-<div class="container">
+  <h3 align="center">&nbsp;</h3>
+  <h1 align="center">Pakarangan Apps </h1>
+  <h3 align="center">&nbsp;</h3>
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <img src="./gambar/user/logo.png" width="150px" height="150px" alt="gambar">
+  </div>
+  <div class="container">
     <div class="login-box">
 
       <center>
@@ -38,9 +38,9 @@
         ?>
         </h4>
       </center>
-<h1 align="center">Silahkan Login</h1><br>
+      <h1 align="center">Silahkan Login</h1><br>
       <div class="login-box-body">
-        <div class="text-center"> 
+        <div class="text-center">
           <span style="color: black;">
             <center>
               <h5>Masukkan Username & Password Anda</h5>
@@ -67,10 +67,10 @@
       </div>
     </div>
 
-    
-      <center>
-        <h5><span style="color: white;">copyright 2022 @ Pakarangan Apps  </span></h5>
-      </center>
+
+    <center>
+      <h5><span style="color: white;">copyright 2024 @ Pakarangan Apps </span></h5>
+    </center>
     </p>
 
     <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>

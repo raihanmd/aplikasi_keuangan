@@ -1,13 +1,11 @@
 <?php
 include '../koneksi.php';
 $id = $_POST['id'];
-$no_rumah  = $_POST['no_rumah'];
-$nama  = $_POST['nama'];
-$alamat  = $_POST['alamat'];
-$nik  = $_POST['nik'];
-$no_hp  = $_POST['no_hp'];
-$no_hp_2  = $_POST['no_hp_2'];
+$nama_pt  = $_POST['nama_pt'];
+$alamat_pt  = $_POST['alamat_pt'];
+$dirut_pt  = $_POST['dirut_pt'];
 
 
-mysqli_query($koneksi, "UPDATE pt SET no_rumah='$no_rumah', nama='$nama', alamat='$alamat', nik='$nik', no_hp='$no_hp', no_hp_2='$no_hp_2' WHERE id='$id'");
+
+mysqli_query($koneksi, "UPDATE pt SET nama_pt = '$nama_pt', alamat_pt = '$alamat_pt', dirut_pt = '$dirut_pt' WHERE id = '$id'") or die(mysqli_error($koneksi));
 header("location:pt.php");

@@ -32,7 +32,7 @@
   <?php
   include '../koneksi.php';
   session_start();
-  if ($_SESSION['status'] != "administrator_logedin") {
+  if ($_SESSION['status'] != "keuangan_logedin") {
     header("location:../index.php?alert=belum_login");
   }
   ?>
@@ -141,6 +141,12 @@
           <li>
             <a href="pt.php">
               <i class="fa fa-university"></i> <span>DATA PT</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="perumahan.php">
+              <i class="fa fa-home" aria-hidden="true"></i> <span>DATA PERUMAHAN</span>
             </a>
           </li>
 

@@ -4,8 +4,8 @@
 
   <section class="content-header">
     <h1>
-      PT
-      <small>Data PT</small>
+      Perumahan
+      <small>Data Perumahan</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -19,23 +19,23 @@
         <div class="box box-info">
 
           <div class="box-header">
-            <h3 class="box-title">Data PT</h3>
+            <h3 class="box-title">Data Perumahan</h3>
             <div class="btn-group pull-right">
 
               <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal">
-                <i class="fa fa-plus"></i> &nbsp Tambah PT
+                <i class="fa fa-plus"></i> &nbsp Tambah Perumahan
               </button>
             </div>
           </div>
           <div class="box-body">
 
             <!-- Modal -->
-            <form action="pt_act.php" method="post">
+            <form action="perumahan_act.php" method="post">
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Tambah PT</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Tambah Perumahan</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -43,16 +43,28 @@
                     <div class="modal-body">
 
                       <div class="form-group">
-                        <label>Nama</label>
-                        <input type="text" name="nama" required="required" class="form-control" placeholder="Nama ..">
+                        <label>Nama PT</label>
+                        <select name="pt_id" id="nama_pengembang" class="form-control" required="required">
+                          <option value="">- Pilih -</option>
+                          <?php
+                          $nasabah = mysqli_query($koneksi, "SELECT p.id, p.nama_pt FROM pt as p");
+                          while ($k = mysqli_fetch_array($nasabah)) {
+                          ?>
+                            <option value="<?php echo $k['id']; ?>"><?php echo $k['nama_pt']; ?></option>
+                          <?php
+                          }
+                          ?>
+                        </select>
                       </div>
+
                       <div class="form-group">
-                        <label>Alamat</label>
-                        <input type="text" name="alamat" required="required" class="form-control" placeholder="Alamat ..">
+                        <label>Nama Perumahan</label>
+                        <input type="text" name="nama_perumahan" required="required" class="form-control" placeholder="Masukan Nama Perumahan ..">
                       </div>
+
                       <div class="form-group">
-                        <label>Dirut</label>
-                        <input type="text" name="dirut" required="required" class="form-control" placeholder="Dirut ..">
+                        <label>Alamat Perumahan</label>
+                        <input type="text" name="alamat_perumahan" required="required" class="form-control" placeholder="Masukan Alamat Perumahan ..">
                       </div>
 
                     </div>
@@ -71,30 +83,24 @@
                 <thead>
                   <tr>
                     <th width="1%">NO</th>
-                    <th>NAMA</th>
-                    <th width="40%">ALAMAT</th>
-                    <th width="20%">DIRUT</th>
-                    <th width="15%">SALDO</th>
-                    <th width="10%">OPSI</th>
+                    <th>NAMA PT</th>
+                    <th width="30%">NAMA PERUMAHAN</th>
+                    <th width="30%">ALAMAT PERUMAHAN</th>
+                    <th width="12%">OPSI</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
                   include '../koneksi.php';
                   $no = 1;
-                  $data = mysqli_query($koneksi, "SELECT id, nama_pt, alamat_pt, dirut_pt,
-                          (SELECT SUM(nominal) FROM transaksi_pt WHERE pt_id = p.id AND jenis = 'Pemasukan') as pemasukan,
-                          (SELECT SUM(nominal) FROM transaksi_pt WHERE pt_id = p.id AND jenis = 'Pengeluaran') as pengeluaran
-                          FROM pt as p");
+                  $data = mysqli_query($koneksi, "SELECT pr.id, pr.pt_id, pr.nama_perumahan, pr.alamat_perumahan, p.nama_pt FROM perumahan as pr JOIN pt as p ON pr.pt_id = p.id");
                   while ($d = mysqli_fetch_array($data)) {
-                    $saldo = $d['pemasukan'] - $d['pengeluaran'];
                   ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $d['nama_pt']; ?></td>
-                      <td><?php echo $d['alamat_pt']; ?></td>
-                      <td><?php echo $d['dirut_pt']; ?></td>
-                      <td><?php echo "Rp. " . number_format($saldo) . " ,-" ?></td>
+                      <td><?php echo $d['nama_perumahan']; ?></td>
+                      <td><?php echo $d['alamat_perumahan']; ?></td>
                       <td>
                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_kategori_<?php echo $d['id'] ?>">
                           <i class="fa fa-cog"></i>
@@ -105,7 +111,7 @@
                         </button>
 
 
-                        <form action="pt_update.php" method="post">
+                        <form action="perumahan_update.php" method="post">
                           <div class="modal fade" id="edit_kategori_<?php echo $d['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
@@ -119,16 +125,28 @@
 
                                   <input type="text" hidden value="<?php echo $d['id'] ?>" name="id" required="required">
                                   <div class="form-group">
-                                    <label>Nama</label>
-                                    <input type="text" value="<?php echo $d['nama_pt'] ?>" name="nama_pt" required="required" class="form-control" placeholder="Nama ..">
+                                    <label>Nama PT</label>
+                                    <select name="pt_id" id="nama_pengembang" class="form-control" required="required">
+                                      <option value="">- Pilih -</option>
+                                      <?php
+                                      $perumahan = mysqli_query($koneksi, "SELECT p.id, p.nama_pt FROM pt as p");
+                                      while ($k = mysqli_fetch_array($perumahan)) {
+                                      ?>
+                                        <option value="<?php echo $k['id']; ?>" <?php echo ($k['id'] == $d['pt_id']) ? 'selected' : ''; ?>><?php echo $k['nama_pt']; ?></option>
+                                      <?php
+                                      }
+                                      ?>
+                                    </select>
                                   </div>
+
                                   <div class="form-group">
-                                    <label>Alamat</label>
-                                    <input type="text" value="<?php echo $d['alamat_pt'] ?>" name="alamat_pt" required="required" class="form-control" placeholder="Alamat ..">
+                                    <label>Nama Perumahan</label>
+                                    <input type="text" name="nama_perumahan" required="required" class="form-control" placeholder="Masukan Nama Perumahan .." value="<?php echo $d['nama_perumahan']; ?>">
                                   </div>
+
                                   <div class="form-group">
-                                    <label>Dirut</label>
-                                    <input type="text" value="<?php echo $d['dirut_pt'] ?>" name="dirut_pt" required="required" class="form-control" placeholder="Dirut ..">
+                                    <label>Alamat Perumahan</label>
+                                    <input type="text" name="alamat_perumahan" required="required" class="form-control" placeholder="Masukan Alamat Perumahan .." value="<?= $d['alamat_perumahan'] ?>">
                                   </div>
 
                                 </div>
@@ -158,7 +176,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                <a href="pt_hapus.php?id=<?php echo $d['id'] ?>" class="btn btn-primary">Hapus</a>
+                                <a href="perumahan_hapus.php?id=<?php echo $d['id'] ?>" class="btn btn-primary">Hapus</a>
                               </div>
                             </div>
                           </div>

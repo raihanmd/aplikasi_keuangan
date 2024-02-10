@@ -54,10 +54,6 @@
                         <label>Dirut</label>
                         <input type="text" name="dirut" required="required" class="form-control" placeholder="Dirut ..">
                       </div>
-                      <div class="form-group">
-                        <label>Saldo</label>
-                        <input type="number" name="saldo" required="required" class="form-control" placeholder="Saldo ..">
-                      </div>
 
                     </div>
                     <div class="modal-footer">
@@ -114,29 +110,25 @@
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Tambah PT</h5>
+                                  <h5 class="modal-title" id="exampleModalLabel">Edit PT</h5>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
                                 <div class="modal-body">
 
-                                  <input type="text" hidden value="<?php echo $d['id'] ?>" name="nama" required="required" class="form-control" placeholder="Nama ..">
+                                  <input type="text" hidden value="<?php echo $d['id'] ?>" name="id" required="required">
                                   <div class="form-group">
                                     <label>Nama</label>
-                                    <input type="text" value="<?php echo $d['nama'] ?>" name="nama" required="required" class="form-control" placeholder="Nama ..">
+                                    <input type="text" value="<?php echo $d['nama_pt'] ?>" name="nama_pt" required="required" class="form-control" placeholder="Nama ..">
                                   </div>
                                   <div class="form-group">
                                     <label>Alamat</label>
-                                    <input type="text" value="<?php echo $d['alamat'] ?>" name="alamat" required="required" class="form-control" placeholder="Alamat ..">
+                                    <input type="text" value="<?php echo $d['alamat_pt'] ?>" name="alamat_pt" required="required" class="form-control" placeholder="Alamat ..">
                                   </div>
                                   <div class="form-group">
                                     <label>Dirut</label>
-                                    <input type="text" value="<?php echo $d['dirut'] ?>" name="dirut" required="required" class="form-control" placeholder="Dirut ..">
-                                  </div>
-                                  <div class="form-group">
-                                    <label>Saldo</label>
-                                    <input type="number" value="<?php echo $d['saldo'] ?>" name="saldo" required="required" class="form-control" placeholder="Saldo ..">
+                                    <input type="text" value="<?php echo $d['dirut_pt'] ?>" name="dirut_pt" required="required" class="form-control" placeholder="Dirut ..">
                                   </div>
 
                                 </div>

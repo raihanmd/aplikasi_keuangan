@@ -32,7 +32,7 @@
   <?php
   include '../koneksi.php';
   session_start();
-  if ($_SESSION['status'] != "administrator_logedin") {
+  if ($_SESSION['status'] != "pemberkasan_logedin") {
     header("location:../index.php?alert=belum_login");
   }
   ?>

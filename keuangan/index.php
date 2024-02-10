@@ -52,21 +52,6 @@
 
       <div class="col-lg-4 col-xs-6">
         <div class="info-box">
-          <span class="info-box-icon bg-info bg-orange"><i class="fa fa-tags"></i></span>
-          <div class="">
-            <span class="info-box-text">Total Hutang</span>
-            <?php
-            $total_hutang = mysqli_query($koneksi, "SELECT sum(nominal) as total_hutang FROM hutang_piutang WHERE tipe='KREDIT' AND status='BELUM LUNAS'");
-            $p = mysqli_fetch_assoc($total_hutang);
-            ?>
-            <span class="info-box-number"><?php echo "Rp. " . number_format($p['total_hutang']) . " ,-" ?></span>
-            <a href="#">Lebih lanjut...</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-xs-6">
-        <div class="info-box">
           <span class="info-box-icon bg-info bg-yellow"><i class="fa fa-arrow-down"></i></span>
           <div class="">
             <span class="info-box-text">Pengeluaran Hari Ini</span>
@@ -92,21 +77,6 @@
             $p = mysqli_fetch_assoc($pengeluaran);
             ?>
             <span class="info-box-number"><?php echo "Rp. " . number_format($p['total_pengeluaran']) . " ,-" ?></span>
-            <a href="#">Lebih lanjut...</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-xs-6">
-        <div class="info-box">
-          <span class="info-box-icon bg-info bg-teal"><i class="fa fa-tags"></i></span>
-          <div class="">
-            <span class="info-box-text">Total Piutang</span>
-            <?php
-            $total_piutang = mysqli_query($koneksi, "SELECT sum(nominal) as total_piutang FROM hutang_piutang  WHERE tipe='DEBIT' AND status='BELUM LUNAS'");
-            $p = mysqli_fetch_assoc($total_piutang);
-            ?>
-            <span class="info-box-number"><?php echo "Rp. " . number_format($p['total_piutang']) . " ,-" ?></span>
             <a href="#">Lebih lanjut...</a>
           </div>
         </div>

@@ -150,6 +150,12 @@
             </a>
           </li>
 
+          <li>
+            <a href="perumahan.php">
+              <i class="fa fa-home" aria-hidden="true"></i> <span>DATA PERUMAHAN</span>
+            </a>
+          </li>
+
 
           <li class="treeview">
             <a href="#">
