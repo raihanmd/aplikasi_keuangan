@@ -144,11 +144,27 @@
             </a>
           </li>
 
-          <li>
+          <!-- <li>
             <a href="pt.php">
               <i class="fa fa-university"></i> <span>DATA PT</span>
             </a>
+          </li> -->
+
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-university"></i>
+              <span>DATA PT</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu" style="display: none;">
+              <li><a href="pt.php"><i class="fa fa-circle-o"></i> PT</a></li>
+              <li><a href="rekening.php"><i class="fa fa-circle-o"></i> Rekening</a></li>
+            </ul>
           </li>
+
+
 
           <li>
             <a href="perumahan.php">
@@ -183,7 +199,11 @@
             </a>
           </li>
 
-
+          <li>
+            <a href="bank.php">
+              <i class="fa fa-credit-card-alt"></i> <span>DATA BANK</span>
+            </a>
+          </li>
 
           <li>
             <a href="gantipassword.php">

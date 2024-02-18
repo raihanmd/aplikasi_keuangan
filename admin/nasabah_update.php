@@ -6,68 +6,62 @@ include '../utils/crypt.php';
 mysqli_autocommit($koneksi, false);
 
 try {
+    // Periksa dan tangani nilai-nilai yang mungkin kosong dari $_POST
+    function checkEmpty($value)
+    {
+        return $value !== "" ? "'$value'" : "NULL";
+    }
+
+    // Tangani nilai-nilai yang mungkin kosong dari $_POST
     $user_id = mysqli_real_escape_string($koneksi, $_POST['user_id']);
-    $nama = mysqli_real_escape_string($koneksi, $_POST['nama']);
-    $username = mysqli_real_escape_string($koneksi, $_POST['username']);
-    $kavling = mysqli_real_escape_string($koneksi, $_POST['kavling']);
-    $tanggal_pendataan = mysqli_real_escape_string($koneksi, $_POST['tanggal_pendataan']);
-    $tempat_lahir = mysqli_real_escape_string($koneksi, $_POST['tempat_lahir']);
-    $tanggal_lahir = mysqli_real_escape_string($koneksi, $_POST['tanggal_lahir']);
-    $pekerjaan = mysqli_real_escape_string($koneksi, $_POST['pekerjaan']);
-    $jabatan = mysqli_real_escape_string($koneksi, $_POST['jabatan']);
-    $nik = encrypt(mysqli_real_escape_string($koneksi, $_POST['nik']));
-    $alamat = mysqli_real_escape_string($koneksi, $_POST['alamat']);
-    $no_hp = mysqli_real_escape_string($koneksi, $_POST['no_hp']);
-    $email = mysqli_real_escape_string($koneksi, $_POST['email']);
-    $nama_pasangan = mysqli_real_escape_string($koneksi, $_POST['nama_pasangan']);
-    $tempat_lahir_pasangan = mysqli_real_escape_string($koneksi, $_POST['tempat_lahir_pasangan']);
-    $tanggal_lahir_pasangan = mysqli_real_escape_string($koneksi, $_POST['tanggal_lahir_pasangan']);
-    $pekerjaan_pasangan = mysqli_real_escape_string($koneksi, $_POST['pekerjaan_pasangan']);
-    $nik_pasangan = encrypt(mysqli_real_escape_string($koneksi, $_POST['nik_pasangan']));
-    $alamat_pasangan = mysqli_real_escape_string($koneksi, $_POST['alamat_pasangan']);
-    $no_hp_pasangan = mysqli_real_escape_string($koneksi, $_POST['no_hp_pasangan']);
-    $nama_instansi = mysqli_real_escape_string($koneksi, $_POST['nama_instansi']);
-    $alamat_instansi = mysqli_real_escape_string($koneksi, $_POST['alamat_instansi']);
-    $no_hp_instansi = mysqli_real_escape_string($koneksi, $_POST['no_hp_instansi']);
-    $gaji = mysqli_real_escape_string($koneksi, $_POST['gaji']);
-    $gaji_terbilang = mysqli_real_escape_string($koneksi, $_POST['gaji_terbilang']);
-    $no_npwp = mysqli_real_escape_string($koneksi, $_POST['no_npwp']);
-    $nama_bank = mysqli_real_escape_string($koneksi, $_POST['nama_bank']);
-    $branch_manager = mysqli_real_escape_string($koneksi, $_POST['branch_manager']);
-    $pt_id = mysqli_real_escape_string($koneksi, $_POST['pt_id']);
-    $perumahan_id = mysqli_real_escape_string($koneksi, $_POST['perumahan_id']);
-    $marketing = mysqli_real_escape_string($koneksi, $_POST['marketing']);
-    $harga_jual_rumah = mysqli_real_escape_string($koneksi, $_POST['harga_jual_rumah']);
-    $uang_muka = mysqli_real_escape_string($koneksi, $_POST['uang_muka']);
-    $plafon_kredit = mysqli_real_escape_string($koneksi, $_POST['plafon_kredit']);
-    $saldo = 0;
-
-    // Query pertama: Update data di tabel user
-    $query_user = "UPDATE user SET user_nama = '$nama'";
-    // Cek apakah password diisi, jika ya, tambahkan ke query
-    if (!empty($_POST['password'])) {
-        $password = md5(mysqli_real_escape_string($koneksi, $_POST['password']));
-        $query_user .= ", password = '$password'";
-    }
-    $query_user .= " WHERE user_id = '$user_id'";
-
-    $result_user = mysqli_query($koneksi, $query_user);
-
-    if (!$result_user) {
-        throw new Exception(mysqli_error($koneksi));
+    // Check if the user exists
+    $user_exists_query = "SELECT * FROM nasabah WHERE user_id = '$user_id'";
+    $user_exists_result = mysqli_query($koneksi, $user_exists_query);
+    if (mysqli_num_rows($user_exists_result) > 0) {
+        // User exists, update the record
+        $query_nasabah = "UPDATE nasabah SET ";
+    } else {
+        // User does not exist, insert a new record
+        $query_nasabah = "UPDATE nasabah SET user_id = '$user_id', ";
     }
 
-    // Query kedua: Update data di tabel rekening
-    $query_rekening = "UPDATE rekening SET nama_bank = '$nama_bank', branch_manager = '$branch_manager' WHERE user_id = '$user_id'";
-    $result_rekening = mysqli_query($koneksi, $query_rekening);
+    // Continue building the query
+    $query_nasabah .= "pt_id = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['pt_id'])) . ", ";
+    $query_nasabah .= "perumahan_id = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['perumahan_id'])) . ", ";
+    $query_nasabah .= "rekening_id = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['rekening_id'])) . ", ";
+    $query_nasabah .= "kavling = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['kavling'])) . ", ";
+    $query_nasabah .= "tanggal_pendataan = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['tanggal_pendataan'])) . ", ";
+    $query_nasabah .= "luas_tanah = " . (isset($_POST['luas_tanah']) ? $_POST['luas_tanah'] : 0) . ", ";
+    $query_nasabah .= "luas_rumah = " . (isset($_POST['luas_rumah']) ? $_POST['luas_rumah'] : 0) . ", ";
+    $query_nasabah .= "tempat_lahir = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['tempat_lahir'])) . ", ";
+    $query_nasabah .= "tanggal_lahir = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['tanggal_lahir'])) . ", ";
+    $query_nasabah .= "pekerjaan = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['pekerjaan'])) . ", ";
+    $query_nasabah .= "jabatan = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['jabatan'])) . ", ";
+    $query_nasabah .= "nik = " . (isset($_POST['nik']) && $_POST['nik'] !== '' ? "'" . encrypt($_POST['nik']) . "'" : "NULL") . ", ";
+    $query_nasabah .= "alamat = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['alamat'])) . ", ";
+    $query_nasabah .= "no_hp = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['no_hp'])) . ", ";
+    $query_nasabah .= "email = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['email'])) . ", ";
+    $query_nasabah .= "nama_pasangan = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['nama_pasangan'])) . ", ";
+    $query_nasabah .= "tempat_lahir_pasangan = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['tempat_lahir_pasangan'])) . ", ";
+    $query_nasabah .= "tanggal_lahir_pasangan = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['tanggal_lahir_pasangan'])) . ", ";
+    $query_nasabah .= "pekerjaan_pasangan = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['pekerjaan_pasangan'])) . ", ";
+    $query_nasabah .= "nik_pasangan = " . (isset($_POST['nik_pasangan']) && $_POST['nik_pasangan'] !== '' ? "'" . encrypt($_POST['nik_pasangan']) . "'" : "NULL") . ", ";
+    $query_nasabah .= "alamat_pasangan = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['alamat_pasangan'])) . ", ";
+    $query_nasabah .= "no_hp_pasangan = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['no_hp_pasangan'])) . ", ";
+    $query_nasabah .= "nama_instansi = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['nama_instansi'])) . ", ";
+    $query_nasabah .= "alamat_instansi = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['alamat_instansi'])) . ", ";
+    $query_nasabah .= "no_hp_instansi = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['no_hp_instansi'])) . ", ";
+    $query_nasabah .= "gaji = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['gaji'])) . ", ";
+    $query_nasabah .= "gaji_terbilang = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['gaji_terbilang'])) . ", ";
+    $query_nasabah .= "no_npwp = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['no_npwp'])) . ", ";
+    $query_nasabah .= "harga_jual_rumah = " . (isset($_POST['harga_jual_rumah']) ? $_POST['harga_jual_rumah'] : 0) . ", ";
+    $query_nasabah .= "uang_muka = " . (isset($_POST['uang_muka']) ? $_POST['uang_muka'] : 0) . ", ";
+    $query_nasabah .= "plafon_kredit = " . (isset($_POST['plafon_kredit']) ? $_POST['plafon_kredit'] : 0) . ", ";
+    $query_nasabah .= "marketing = " . checkEmpty(mysqli_real_escape_string($koneksi, $_POST['marketing']));
 
-    if (!$result_rekening) {
-        throw new Exception(mysqli_error($koneksi));
-    }
+    $query_nasabah .= " WHERE user_id = $user_id";
 
-    // Query ketiga: Update data di tabel nasabah
-    $query_nasabah = "UPDATE nasabah SET pt_id = $pt_id, perumahan_id = $perumahan_id, kavling = '$kavling', tanggal_pendataan = '$tanggal_pendataan', tanggal_lahir = '$tanggal_lahir', tempat_lahir = '$tempat_lahir', pekerjaan = '$pekerjaan', jabatan = '$jabatan', nik = '$nik', alamat = '$alamat', no_hp = '$no_hp', email = '$email', nama_pasangan = '$nama_pasangan', tempat_lahir_pasangan = '$tempat_lahir_pasangan', tanggal_lahir_pasangan = '$tanggal_lahir_pasangan', pekerjaan_pasangan = '$pekerjaan_pasangan', nik_pasangan = '$nik_pasangan', alamat_pasangan = '$alamat_pasangan', no_hp_pasangan = '$no_hp_pasangan', nama_instansi = '$nama_instansi', alamat_instansi = '$alamat_instansi', no_hp_instansi = '$no_hp_instansi', gaji = $gaji, gaji_terbilang = '$gaji_terbilang', no_npwp = '$no_npwp', marketing = '$marketing', harga_jual_rumah = $harga_jual_rumah, uang_muka = $uang_muka, plafon_kredit = $plafon_kredit, saldo = $saldo WHERE user_id = '$user_id'";
-
+    // Execute the query
     $result_nasabah = mysqli_query($koneksi, $query_nasabah);
 
     if (!$result_nasabah) {
@@ -81,7 +75,7 @@ try {
     mysqli_autocommit($koneksi, true);
 
     // Redirect setelah transaksi selesai
-    header("location:nasabah.php");
+    header("location:nasabah_detail.php?user_id=$user_id");
 } catch (Exception $e) {
     // Rollback transaksi jika ada kesalahan
     mysqli_rollback($koneksi);

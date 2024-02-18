@@ -73,9 +73,9 @@ if (isset($_GET['tanggal_sampai']) && isset($_GET['tanggal_dari']) && isset($_GE
     $total_pemasukan = 0;
     $total_pengeluaran = 0;
     if ($kategori == "semua") {
-        $query = "SELECT * FROM transaksi, kategori WHERE kategori_id=transaksi_kategori AND date(transaksi_tanggal)>='$tgl_dari' AND date(transaksi_tanggal)<='$tgl_sampai'";
+        $query = "SELECT * FROM transaksi_umum, kategori WHERE kategori_id=transaksi_kategori AND date(transaksi_tanggal)>='$tgl_dari' AND date(transaksi_tanggal)<='$tgl_sampai' ORDER BY transaksi_tanggal DESC";
     } else {
-        $query = "SELECT * FROM transaksi, kategori WHERE kategori_id=transaksi_kategori AND kategori_id='$kategori' AND date(transaksi_tanggal)>='$tgl_dari' AND date(transaksi_tanggal)<='$tgl_sampai'";
+        $query = "SELECT * FROM transaksi_umum, kategori WHERE kategori_id=transaksi_kategori AND kategori_id='$kategori' AND date(transaksi_tanggal)>='$tgl_dari' AND date(transaksi_tanggal)<='$tgl_sampai' ORDER BY transaksi_tanggal DESC";
     }
 
     $data = [];
@@ -107,7 +107,7 @@ if (isset($_GET['tanggal_sampai']) && isset($_GET['tanggal_dari']) && isset($_GE
     $sheet->setCellValue('A' . $row, "-");
     $sheet->setCellValue('B' . $row, "-");
     $sheet->setCellValue('C' . $row, "-");
-    $sheet->setCellValue('D' . $row, formatMoney($saldo_awal));
+    $sheet->setCellValue('D' . $row, "SALDO AWAL");
     $sheet->setCellValue('E' . $row, formatMoney($saldo_awal));
 
     $sheet->setCellValue('F' . $row, '-');
@@ -144,7 +144,10 @@ if (isset($_GET['tanggal_sampai']) && isset($_GET['tanggal_dari']) && isset($_GE
     $sheet->getStyle('A' . $row . ':F' . $row)->getFont()->getColor()->setRGB('FFFFFF');
     $sheet->getStyle('A' . $row . ':F' . $row)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID);
     $sheet->getStyle('A' . $row . ':F' . $row)->getFill()->getStartColor()->setRGB('0070C0');
-    $sheet->getStyle('A' . $row . ':F' . $row)->getAlignment()->setHorizontal('center');
+    //ALIGN DATA COLUMN
+    $sheet->getStyle('A13' . ':A' . $row)->getAlignment()->setHorizontal('left');
+    //ALIGN TOTAL DAN SALDO COLUMN
+    $sheet->getStyle('A' . $row - 1 . ':F' . $row)->getAlignment()->setHorizontal('center');
     $sheet->setCellValue('E' . $row, formatMoney($total_pemasukan - $total_pengeluaran));
     $row++;
 } else {

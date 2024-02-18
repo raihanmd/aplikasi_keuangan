@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'header.php';
 include '../koneksi.php';
 ?>
@@ -18,20 +18,20 @@ include '../koneksi.php';
 
   <section class="content">
     <div class="row">
-      <section class="col-lg-6 col-lg-offset-3">       
+      <section class="col-lg-6 col-lg-offset-3">
         <div class="box box-info">
 
           <div class="box-header">
             <h3 class="box-title">Edit Pengguna</h3>
-            <a href="user.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-reply"></i> &nbsp; Kembali</a> 
+            <a href="user.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-reply"></i> &nbsp; Kembali</a>
           </div>
           <div class="box-body">
             <form action="user_update.php" method="post" enctype="multipart/form-data">
-              <?php 
-              $id = $_GET['id'];              
+              <?php
+              $id = $_GET['id'];
               $data = mysqli_query($koneksi, "select * from user where user_id='$id'");
-              while($d = mysqli_fetch_array($data)){
-                ?>
+              while ($d = mysqli_fetch_array($data)) {
+              ?>
 
                 <div class="form-group">
                   <label>Nama</label>
@@ -54,8 +54,18 @@ include '../koneksi.php';
                   <label>Level</label>
                   <select class="form-control" name="level" required="required">
                     <option value=""> - Pilih Level - </option>
-                    <option <?php if($d['user_level'] == "administrator"){echo "selected='selected'";} ?> value="administrator"> Administrator </option>
-                    <option <?php if($d['user_level'] == "manajemen"){echo "selected='selected'";} ?> value="manajemen"> Manajemen </option>
+                    <option <?php if ($d['user_level'] == "administrator") {
+                              echo "selected='selected'";
+                            } ?> value="administrator"> Administrator </option>
+                    <option <?php if ($d['user_level'] == "keuangan") {
+                              echo "selected='selected'";
+                            } ?> value="manajemen"> Keuangan </option>
+                    <option <?php if ($d['user_level'] == "pemberkasan") {
+                              echo "selected='selected'";
+                            } ?> value="manajemen"> Pemberkasan </option>
+                    <option <?php if ($d['user_level'] == "nasabah") {
+                              echo "selected='selected'";
+                            } ?> value="manajemen"> Nasabah </option>
                   </select>
                 </div>
 
@@ -68,11 +78,11 @@ include '../koneksi.php';
                 <div class="form-group">
                   <input type="submit" class="btn btn-sm btn-primary" value="Simpan">
                 </div>
-                <?php
+              <?php
               }
 
               ?>
-              
+
             </form>
           </div>
 

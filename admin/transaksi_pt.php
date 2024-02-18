@@ -156,9 +156,9 @@
                   $no = 1;
                   if (isset($_GET['query']) && !empty($_GET['query'])) {
                     $query = $_GET['query'];
-                    $data = mysqli_query($koneksi, "SELECT p.nama_pt, t.* FROM transaksi_pt as t JOIN pt as p ON t.pt_id = p.id WHERE keterangan LIKE '%$query%' ORDER BY t.id DESC");
+                    $data = mysqli_query($koneksi, "SELECT p.nama_pt, t.* FROM transaksi_pt as t JOIN pt as p ON t.pt_id = p.id WHERE keterangan LIKE '%$query%' ORDER BY t.tanggal DESC");
                   } else {
-                    $data = mysqli_query($koneksi, "SELECT p.nama_pt, t.* FROM transaksi_pt as t JOIN pt as p ON t.pt_id = p.id ORDER BY t.id DESC");
+                    $data = mysqli_query($koneksi, "SELECT p.nama_pt, t.* FROM transaksi_pt as t JOIN pt as p ON t.pt_id = p.id ORDER BY t.tanggal DESC");
                   }
                   while ($d = mysqli_fetch_array($data)) {
                   ?>

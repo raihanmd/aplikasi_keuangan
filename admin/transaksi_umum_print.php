@@ -132,9 +132,9 @@
 
         if (isset($_GET['query']) && !empty($_GET['query'])) {
           $query = $_GET['query'];
-          $result = mysqli_query($koneksi, "SELECT * FROM transaksi_umum WHERE transaksi_keterangan LIKE '%$query%' ORDER BY transaksi_id DESC");
+          $result = mysqli_query($koneksi, "SELECT * FROM transaksi_umum WHERE transaksi_keterangan LIKE '%$query%' ORDER BY transaksi_tanggal DESC");
         } else {
-          $result = mysqli_query($koneksi, "SELECT * FROM transaksi_umum ORDER BY transaksi_id DESC");
+          $result = mysqli_query($koneksi, "SELECT * FROM transaksi_umum ORDER BY transaksi_tanggal DESC");
         }
 
         $no = 1;

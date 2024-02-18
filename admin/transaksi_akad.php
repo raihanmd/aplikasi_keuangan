@@ -166,9 +166,9 @@
                   $no = 1;
                   if (isset($_GET['query']) && !empty($_GET['query'])) {
                     $query = $_GET['query'];
-                    $data = mysqli_query($koneksi, "SELECT u.user_nama, t.*, n.user_id FROM transaksi_akad as t JOIN nasabah as n ON t.nasabah_id = n.id JOIN user as u ON n.user_id = u.user_id WHERE keterangan LIKE '%$query%' ORDER BY t.id DESC");
+                    $data = mysqli_query($koneksi, "SELECT u.user_nama, t.*, n.user_id FROM transaksi_akad as t JOIN nasabah as n ON t.nasabah_id = n.id JOIN user as u ON n.user_id = u.user_id WHERE keterangan LIKE '%$query%' ORDER BY t.tanggal DESC");
                   } else {
-                    $data = mysqli_query($koneksi, "SELECT u.user_nama, t.*, n.user_id FROM transaksi_akad as t JOIN nasabah as n ON t.nasabah_id = n.id JOIN user as u ON n.user_id = u.user_id ORDER BY t.id DESC");
+                    $data = mysqli_query($koneksi, "SELECT u.user_nama, t.*, n.user_id FROM transaksi_akad as t JOIN nasabah as n ON t.nasabah_id = n.id JOIN user as u ON n.user_id = u.user_id ORDER BY t.tanggal DESC");
                   }
                   while ($d = mysqli_fetch_array($data)) {
                   ?>

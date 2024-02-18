@@ -234,16 +234,36 @@
 
       }
     </script>
-
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         const namaPengembangSelect = document.getElementById("nama_pengembang");
         const namaPerumahanSelect = document.getElementById("nama_perumahan");
         const dirutInput = document.getElementById("dirut");
         const alamatPerumahanInput = document.getElementById("alamat_perumahan");
+        const namaBankSelect = document.getElementById("nama_bank");
+        const branchManagerInput = document.getElementById("branch_manager");
+        const noRekeningInput = document.getElementById("no_rekening");
+        const atasNamaInput = document.getElementById("atas_nama");
+
+        function setRequired(element, required) {
+          element.required = required;
+        }
 
         namaPengembangSelect.addEventListener("change", function() {
+          const isPengembangSelected = namaPengembangSelect.value !== "";
+
+          setRequired(namaPerumahanSelect, isPengembangSelected);
+          setRequired(namaBankSelect, isPengembangSelected);
+
           const selectedPengembangId = namaPengembangSelect.value;
+
+          branchManagerInput.value = "";
+          atasNamaInput.value = "";
+          noRekeningInput.value = "";
+          alamatPerumahanInput.value = ""
+
+          namaBankSelect.disabled = false;
+          namaBankSelect.innerHTML = '<option value="">- Pilih -</option>';
 
           namaPerumahanSelect.disabled = false;
           namaPerumahanSelect.innerHTML = '<option value="">- Pilih -</option>';
@@ -253,7 +273,6 @@
               .then(response => response.json())
               .then(data => {
                 data.forEach(perumahan => {
-                  console.log(perumahan)
                   let option = document.createElement('option');
                   option.value = perumahan.id;
                   option.textContent = perumahan.nama_perumahan;
@@ -262,18 +281,36 @@
                 });
               })
               .catch(error => console.error('Error fetching data:', error));
+            fetch('../utils/fetch_bank.php?id=' + selectedPengembangId)
+              .then(response => response.json())
+              .then(data => {
+                data.forEach(bank => {
+                  let option = document.createElement('option');
+                  option.value = bank.id;
+                  option.textContent = bank.nama_bank;
+                  option.setAttribute("data-branch-manager", bank.branch_manager);
+                  option.setAttribute("data-no-rekening", bank.no_rekening);
+                  option.setAttribute("data-atas-nama", bank.atas_nama);
+                  namaBankSelect.appendChild(option);
+                });
+              })
+              .catch(error => console.error('Error fetching bank data:', error));
           } else {
             namaPerumahanSelect.disabled = true;
+            namaBankSelect.disabled = true;
           }
 
-          // Set value and disable property for Dirut input
           const selectedOption = namaPengembangSelect.options[namaPengembangSelect.selectedIndex];
           const dirutValue = selectedOption.getAttribute("data-dirut");
           dirutInput.value = dirutValue;
-          dirutInput.disabled = (selectedPengembangId === "");
+        });
 
-          // Reset alamatPerumahanInput when changing pengembang
-          alamatPerumahanInput.value = "";
+        namaBankSelect.addEventListener("change", function() {
+          const selectedBank = namaBankSelect.options[namaBankSelect.selectedIndex];
+
+          branchManagerInput.value = selectedBank.getAttribute("data-branch-manager");
+          atasNamaInput.value = selectedBank.getAttribute("data-atas-nama");
+          noRekeningInput.value = selectedBank.getAttribute("data-no-rekening");
         });
 
         namaPerumahanSelect.addEventListener("change", function() {
@@ -286,22 +323,53 @@
         const uangMukaInput = document.getElementById("uang_muka");
         const plafonKreditInput = document.getElementById("plafon_kredit");
 
-        // Fungsi untuk mengisi nilai Plafon Kredit secara otomatis
         function updatePlafonKredit() {
           const hargaJualRumah = parseFloat(hargaJualRumahInput.value) || 0;
           const uangMuka = parseFloat(uangMukaInput.value) || 0;
 
           const plafonKredit = hargaJualRumah - uangMuka;
 
-          // Mengatur nilai Plafon Kredit pada input
           plafonKreditInput.value = plafonKredit >= 0 ? plafonKredit : 0;
         }
 
-        // Menanggapi perubahan pada input Harga Jual Rumah dan Uang Muka
         hargaJualRumahInput.addEventListener("input", updatePlafonKredit);
         uangMukaInput.addEventListener("input", updatePlafonKredit);
       });
     </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const namaPengembangSelect = document.getElementById("nama_pengembang_rekening");
+        const namaBankSelect = document.getElementById("nama_bank_rekening");
+
+
+        namaPengembangSelect.addEventListener("change", function() {
+          const selectedPengembangId = namaPengembangSelect.value;
+
+          namaBankSelect.disabled = false;
+          namaBankSelect.innerHTML = '<option value="">- Pilih -</option>';
+
+          if (selectedPengembangId !== "") {
+
+            fetch('../utils/fetch_bank.php?id=' + selectedPengembangId +
+                '&rekening=true')
+              .then(response => response.json())
+              .then(data => {
+                data.forEach(bank => {
+                  let option = document.createElement('option');
+                  option.value = bank.id;
+                  option.textContent = bank.nama_bank;
+                  namaBankSelect.appendChild(option);
+                });
+              })
+              .catch(error => console.error('Error fetching bank data:', error));
+          } else {
+            namaBankSelect.disabled = true;
+          }
+
+        });
+      });
+    </script>
+
     </body>
 
     </html>

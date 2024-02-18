@@ -160,9 +160,9 @@
                   // Proses pencarian
                   if (isset($_GET['query']) && !empty($_GET['query'])) {
                     $query = $_GET['query'];
-                    $data = mysqli_query($koneksi, "SELECT * FROM transaksi_umum, kategori WHERE kategori_id=transaksi_kategori AND (transaksi_keterangan LIKE '%$query%' OR kategori LIKE '%$query%') ORDER BY transaksi_id DESC");
+                    $data = mysqli_query($koneksi, "SELECT * FROM transaksi_umum, kategori WHERE kategori_id=transaksi_kategori AND (transaksi_keterangan LIKE '%$query%' OR kategori LIKE '%$query%') ORDER BY transaksi_tanggal DESC");
                   } else {
-                    $data = mysqli_query($koneksi, "SELECT * FROM transaksi_umum, kategori WHERE kategori_id=transaksi_kategori ORDER BY transaksi_id DESC");
+                    $data = mysqli_query($koneksi, "SELECT * FROM transaksi_umum, kategori WHERE kategori_id=transaksi_kategori ORDER BY transaksi_tanggal DESC");
                   }
                   while ($d = mysqli_fetch_array($data)) {
                   ?>
